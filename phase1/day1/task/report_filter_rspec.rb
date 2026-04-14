@@ -17,22 +17,22 @@ RSpec.describe ReportFilter do
     expect(subject).to respond_to(:map)
   end
 
-  # it "filters data based on a block criteria" do
-  #   # Only projects with budget > 800
-  #   result = subject.select_by { |item| item[:budget] > 800 }
-  #   expect(result.map { |i| i[:name] }).to eq(["Project A", "Project C"])
-  # end
+  it "filters data based on a block criteria" do
+    # Only projects with budget > 800
+    result = subject.select_by { |item| item[:budget] > 800 }
+    expect(result.map { |i| i[:name] }).to eq(["Project A", "Project C"])
+  end
 
-  # it "allows chaining or summing (testing Enumerable integration)" do
-  #   total_budget = subject.sum { |item| item[:budget] }
-  #   expect(total_budget).to eq(3500)
-  # end
+  it "allows chaining or summing (testing Enumerable integration)" do
+    total_budget = subject.sum { |item| item[:budget] }
+    expect(total_budget).to eq(3500)
+  end
 
-  # it "supports a custom 'status_check' method via method_missing" do
-  #   # Staff level: Dynamically handle filters like .only_active or .only_archived
-  #   # based on the :status key in the hash
-  #   active_projects = subject.only_active
-  #   expect(active_projects.count).to eq(2)
-  #   expect(active_projects.first[:name]).to eq("Project A")
-  # end
+  it "supports a custom 'status_check' method via method_missing" do
+    # Staff level: Dynamically handle filters like .only_active or .only_archived
+    # based on the :status key in the hash
+    active_projects = subject.only_active
+    expect(active_projects.count).to eq(2)
+    expect(active_projects.first[:name]).to eq("Project A")
+  end
 end
